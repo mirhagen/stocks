@@ -27,7 +27,7 @@ stocks["NEXAM"] = ["YAHOO", "NEXAM.ST", "SEK"]
 stocks["AMAYA"] = ["YAHOO", "AYA.TO", "CAD"]
 
 # Time to sleep between polls
-sleeptime = 60
+sleeptime = 30
 
 # Use colors or no?
 colors = True
