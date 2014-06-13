@@ -5,7 +5,7 @@
 import os
 import urllib
 import json
-from time import sleep
+from time import sleep,time
 
 stocks = {}
 
@@ -200,6 +200,9 @@ for i in stocks:
     stocks[i].append("9999")
 
 while True:
+    start_time = time()
+    datum =  os.popen("date").read().rstrip()
+
     # GET YAHOO STOCK DATA
     yahoo_data=urllib.urlopen(yahoo_base_url+yahoo_stocks+yahoo_url_suffix).read().rstrip().split('\n')
     for i in yahoo_data:
@@ -212,7 +215,7 @@ while True:
         GoogleQuote(i)
 
     # OUTPUT DATA
-    os.system("date")
+    print datum
 #    for key in sorted(stocks):
     for key, value in sorted(stocks.iteritems(), reverse=True, key=lambda kvt: float(kvt[1][3][1])):
         print "%s\t%s\t%s\t%s" %( key,
@@ -220,4 +223,5 @@ while True:
                                   color2("",stocks[key][3][1],"%"),
                                   color2("(",stocks[key][3][2]," "+stocks[key][2]+")"))
     print ""
-    sleep(sleeptime)
+    end_time = time()
+    sleep(sleeptime+start_time-end_time)
